@@ -47,7 +47,7 @@ public class TodoController {
 		return "todolist";
 	}
 	
-	
+	@CrossOrigin
 	@RequestMapping(value="/todos", method = RequestMethod.GET)
 	public @ResponseBody List<Todo> todoListRest() {
 		return (List<Todo>) todorepository.findAll();
