@@ -22,9 +22,8 @@ import hh.swd20.todosovellus.domain.Todo;
 import hh.swd20.todosovellus.domain.TodoRepository;
 import hh.swd20.todosovellus.domain.CategoryRepository;
 
-@CrossOrigin(origins = "http://localhost:3000")
 @Controller
-@RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TodoController {
 	@Autowired
 	private TodoRepository todorepository;
