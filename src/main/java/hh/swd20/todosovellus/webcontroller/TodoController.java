@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.ui.Model;
@@ -22,8 +22,9 @@ import hh.swd20.todosovellus.domain.Todo;
 import hh.swd20.todosovellus.domain.TodoRepository;
 import hh.swd20.todosovellus.domain.CategoryRepository;
 
-
+@CrossOrigin(origins = "http://localhost:3000")
 @Controller
+@RestController
 public class TodoController {
 	@Autowired
 	private TodoRepository todorepository;
@@ -47,7 +48,7 @@ public class TodoController {
 		return "todolist";
 	}
 	
-	@CrossOrigin(origins = "http://localhost:3000")
+	
 	@RequestMapping(value="/todos", method = RequestMethod.GET)
 	public @ResponseBody List<Todo> todoListRest() {
 		return (List<Todo>) todorepository.findAll();
