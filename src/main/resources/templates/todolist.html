@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.springframework.org/security/tags">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />-->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<title>Todolist</title>
+</head>
+<body> 
+<div sec:authorize="isAuthenticated()" class="col-md-4">
+		<h3 th:inline="text">Signed in as [[${#httpServletRequest.remoteUser}]]</h3>
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-danger"/>
+		</form>
+	</div>
+<h1>Todolist</h1>
+<table class="table table-striped">
+	<tr>
+		<th>Title</th>
+		<th>Description</th>
+		<th>Addition</th>
+		<th>Category</th>
+		<th></th>
+		<th></th>
+	</tr>
+	<tr th:each="todo : ${todos}">
+		<td th:text="${todo.title}"></td>
+		<td th:text="${todo.description}"></td>
+		<td th:text="${todo.addition}"></td>
+		<td th:text="${todo.category.name}"></td>
+		<td sec:authorize="isAuthenticated()"><a th:href="@{/edit/{id}(id=${todo.id})}" class="btn btn-primary">Edit</a></td>
+		<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${todo.id})}" class="btn btn-danger">Delete</a></td>
+	</tr>
+</table>
+<a sec:authorize="hasAuthority('ADMIN')" href="/add" class="btn btn-success">Add a new task</a>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<title>Todo app</title>
+</head>
+<body>
+	<h3>Login to make changes to the list</h1>
+	<a href="/login" class="btn btn-success">Login</a>
+	<h1>Todolist</h1>
+<table class="table table-striped">
+	<tr>
+		<th>Title</th>
+		<th>Description</th>
+		<th>Addition</th>
+		<th>Category</th>
+	</tr>
+	<tr th:each="todo : ${todos}">
+		<td th:text="${todo.title}"></td>
+		<td th:text="${todo.description}"></td>
+		<td th:text="${todo.addition}"></td>
+		<td th:text="${todo.category.name}"></td>
+	</tr>
+</table>
+</body>
+</html>
