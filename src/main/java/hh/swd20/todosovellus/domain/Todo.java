@@ -6,11 +6,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+//import javax.validation.constraints.Min;
+//import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+//import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Todo {
@@ -21,9 +21,7 @@ public class Todo {
 	private String title;
 	private String description;
 	private String addition;
-	
 	@ManyToOne
-	@JsonIgnore
 	@JoinColumn(name = "categoryid")
 	private Category category;
 	
@@ -31,6 +29,7 @@ public class Todo {
 		this.title = "";
 		this.description = "";
 		this.addition = "";
+		//this.category = null;
 	}
 	
 	public Todo(String title, String description, Category category) {
@@ -86,7 +85,7 @@ public class Todo {
 		if (this.category != null)
 			return "Todo [id=" + id + ", title=" + title + ", description=" + description + ", addition=" + addition + " category =" + this.getCategory() +  "]";
 		else
-			return "Todo [id=" + id + ", title=" + title + ", description=" + description + ", addition=" + addition + "]";
+			return "Todo [id=" + id + ", title=" + title + ", description=" + description + ", addition=" + addition + " category =" + category + "]";
 	}
 		
 }
